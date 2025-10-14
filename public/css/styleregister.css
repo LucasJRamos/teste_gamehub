@@ -1,0 +1,155 @@
+/* ====== Game Hub – Cadastro (estilo igual ao login) ====== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap');
+
+:root{
+  --bg-1:#0f0620;
+  --bg-2:#1a0e2d;
+  --card:rgba(22, 11, 38, .92);
+  --card-border: rgba(149, 92, 255, .25);
+  --input:#24143b;
+  --input-border:#3a2a57;
+  --text:#EDE7FF;
+  --muted:#AC9FD0;
+  --accent-1:#7A2CFF;
+  --accent-2:#B44CFF;
+  --glow: rgba(144, 76, 255, .45);
+}
+
+html,body{ height:100%; }
+body{
+  margin:0;
+  color:var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #3b1a72 0%, transparent 60%),
+    radial-gradient(800px 400px at 50% 110%, #3b1a72 0%, transparent 60%),
+    radial-gradient(600px 600px at 20% 20%, #2a134f 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 100%);
+  display:grid;
+  place-items:center;
+  padding:32px 16px;
+}
+
+/* Título */
+h1{
+  margin:0 0 18px;
+  text-align:center;
+  font-family: Orbitron, Inter, sans-serif;
+  font-weight:700;
+  font-size: clamp(26px, 4vw, 32px);
+  letter-spacing:.12em;
+  color:#EDE7FF;
+  text-shadow: 0 0 18px var(--glow);
+}
+
+/* Card do formulário */
+body > form{
+  width:min(460px, 92vw);
+  background:var(--card);
+  border:1px solid var(--card-border);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:
+    0 0 0 6px rgba(144,76,255,.06) inset,
+    0 20px 80px var(--glow);
+  backdrop-filter: blur(6px);
+  position:relative;
+}
+
+body > form::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:24px;
+  background: radial-gradient(80% 60% at 50% 0%, rgba(180,76,255,.18), transparent 70%);
+  z-index:-1;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"]{
+  width:100%;
+  height:48px;
+  border-radius:14px;
+  border:1px solid var(--input-border);
+  background:var(--input);
+  color:var(--text);
+  padding:0 14px;
+  outline:none;
+  transition:.2s border-color, .2s box-shadow, .2s transform, .2s background;
+  box-shadow: 0 2px 0 rgba(0,0,0,.2) inset;
+  margin-top:12px;
+}
+input::placeholder{ color:#b9aad6; opacity:.6; }
+input:focus{
+  border-color:#9255ff;
+  box-shadow: 0 0 0 4px rgba(146,85,255,.15), 0 0 24px var(--glow);
+  transform: translateY(-1px);
+}
+
+/* Botão */
+button,
+input[type="submit"]{
+  width:100%;
+  height:52px;
+  margin-top:18px;
+  border:0;
+  border-radius:16px;
+  color:#fff;
+  font-family: Orbitron, Inter, sans-serif;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  cursor:pointer;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  box-shadow: 0 10px 32px rgba(180,76,255,.35), 0 0 0 3px rgba(146,85,255,.18) inset;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+button:hover,
+input[type="submit"]:hover{
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 42px rgba(180,76,255,.45), 0 0 0 3px rgba(146,85,255,.22) inset;
+}
+button:active,
+input[type="submit"]:active{
+  transform: translateY(0);
+  filter: brightness(.98);
+}
+
+/* Link abaixo */
+p{ margin-top:14px; }
+a{
+  color:#c7b3ff;
+  text-decoration:none;
+  font-weight:600;
+}
+a:hover{ color:#e0d5ff; text-decoration:underline; }
+
+/* Mensagens */
+.success{
+  width:min(460px, 92vw);
+  margin-bottom:14px;
+  color:#9effc3;
+  background:rgba(35,154,97,.12);
+  border:1px solid rgba(35,154,97,.35);
+  padding:10px 12px;
+  border-radius:12px;
+}
+.error{
+  width:min(460px, 92vw);
+  margin-bottom:14px;
+  color:#ffb7c4;
+  background:rgba(199,55,93,.12);
+  border:1px solid rgba(199,55,93,.35);
+  padding:10px 12px;
+  border-radius:12px;
+}
+
+/* Responsivo */
+@media (max-width:420px){
+  body > form{ padding:22px; border-radius:18px; }
+  button, input[type="submit"]{ height:50px; }
+}
