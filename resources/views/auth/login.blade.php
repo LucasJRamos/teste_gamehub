@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameHub | Login</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/stylelogin.css') }}">
 </head>
 <body>
 
@@ -26,8 +26,19 @@
 
                 <label>Senha</label>
                 <input type="password" name="password" placeholder="Sua senha" required>
+                <!-- Game Hub Button -->
+                <button class="btn-login" aria-label="Ready? / Fight!">
+                <div class="original">Ready?</div>
+                <div class="letters" aria-hidden="true">
+                    <span>F</span>
+                    <span>I</span>
+                    <span>G</span>
+                    <span>H</span>
+                    <span>T</span>
+                    <span>!</span>
+                </div>
+                </button>
 
-                <button type="submit" class="btn-login">READY?</button>
             </form>
 
             <div class="links">
