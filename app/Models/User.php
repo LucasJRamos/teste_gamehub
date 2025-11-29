@@ -46,4 +46,9 @@ class User extends Authenticatable
             'data_nascimento'   => 'date',
         ];
     }
+
+    public function portfolioItems()
+    {
+        return $this->hasMany(PortfolioItem::class);
+    }
 }
