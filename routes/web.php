@@ -21,6 +21,14 @@ Route::middleware('auth')->group(function () {
     
     // Rotas de Perfil
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/{id}', [ProfileController::class, 'showUser'])->name('profile.show');
+    
+    // Rotas de Portfólio
     Route::post('/portfolio/upload', [ProfileController::class, 'uploadPortfolio'])->name('portfolio.upload');
     Route::delete('/portfolio/{id}', [ProfileController::class, 'deletePortfolioItem'])->name('portfolio.delete');
+    
+    // Rota de Explorar
+    Route::get('/explore', [ProfileController::class, 'explore'])->name('explore');
 });

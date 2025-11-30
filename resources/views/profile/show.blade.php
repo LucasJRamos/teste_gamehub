@@ -17,8 +17,9 @@
             </div>
             <div class="nav-menu">
                 <a href="{{ route('dashboard') }}" class="nav-link">Feed</a>
-                <a href="{{ route('profile') }}" class="nav-link active">Perfil</a>
-                <a href="#" class="nav-link">Explorar</a>
+                <a href="{{ route('profile') }}"
+                    class="nav-link {{ !isset($isOwnProfile) || $isOwnProfile ? 'active' : '' }}">Perfil</a>
+                <a href="{{ route('explore') }}" class="nav-link">Explorar</a>
             </div>
             <div class="nav-user">
                 <span>{{ auth()->user()->username }}</span>
@@ -38,12 +39,25 @@
         <div class="profile-header">
             <div class="profile-banner"></div>
             <div class="profile-info">
-                <img src="/css/imagens/mascote.png" alt="Avatar" class="profile-avatar">
+                @if($user->profile_photo)
+                    <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="Avatar" class="profile-avatar">
+                @else
+                    <img src="/css/imagens/mascote.png" alt="Avatar" class="profile-avatar">
+                @endif
                 <div class="profile-details">
-                    <h1>{{ $user->username }}</h1>
+                    <div class="profile-name-title">
+                        <h1>{{ $user->username }}</h1>
+                        @if($user->professional_title)
+                            <span class="professional-title">{{ $user->professional_title }}</span>
+                        @endif
+                    </div>
                     <p>{{ $user->email }}</p>
                     <p>Membro desde {{ $user->created_at->format('d/m/Y') }}</p>
                     <p>Nascimento: {{ $user->data_nascimento->format('d/m/Y') }}</p>
+
+                    @if(!isset($isOwnProfile) || $isOwnProfile)
+                        <a href="{{ route('profile.edit') }}" class="btn-edit-profile">✏️ Editar Perfil</a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -53,50 +67,53 @@
         </div>
 
         <section class="portfolio-section" id="portfolio">
-            <div class="portfolio-upload">
-                <h2>Adicionar ao Portfólio</h2>
-                <div class="upload-options">
-                    <button class="btn-option" onclick="showUploadForm('image')">📸 Upload de Imagem</button>
-                    <button class="btn-option" onclick="showUploadForm('link')">🔗 Link de Repositório</button>
+            @if(!isset($isOwnProfile) || $isOwnProfile)
+                <div class="portfolio-upload">
+                    <h2>Adicionar ao Portfólio</h2>
+                    <div class="upload-options">
+                        <button class="btn-option" onclick="showUploadForm('image')">📸 Upload de Imagem</button>
+                        <button class="btn-option" onclick="showUploadForm('link')">🔗 Link de Repositório</button>
+                    </div>
+
+                    <!-- Form de Upload de Imagem -->
+                    <form id="form-image" class="upload-form" method="POST" action="{{ route('portfolio.upload') }}"
+                        enctype="multipart/form-data" style="display: none;">
+                        @csrf
+                        <input type="hidden" name="type" value="image">
+                        <input type="text" name="title" placeholder="Título (opcional)" maxlength="255">
+                        <textarea name="description" placeholder="Descrição (opcional)" maxlength="1000"
+                            rows="3"></textarea>
+                        <input type="file" name="file" accept="image/*" required>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit">Enviar</button>
+                            <button type="button" class="btn-cancel" onclick="hideUploadForm()">Cancelar</button>
+                        </div>
+                    </form>
+
+                    <!-- Form de Link -->
+                    <form id="form-link" class="upload-form" method="POST" action="{{ route('portfolio.upload') }}"
+                        style="display: none;">
+                        @csrf
+                        <input type="hidden" name="type" value="link">
+                        <input type="text" name="title" placeholder="Título (opcional)" maxlength="255">
+                        <textarea name="description" placeholder="Descrição (opcional)" maxlength="1000"
+                            rows="3"></textarea>
+                        <input type="url" name="link_url" placeholder="URL do repositório" required>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-submit">Enviar</button>
+                            <button type="button" class="btn-cancel" onclick="hideUploadForm()">Cancelar</button>
+                        </div>
+                    </form>
                 </div>
-
-                <!-- Form de Upload de Imagem -->
-                <form id="form-image" class="upload-form" method="POST" action="{{ route('portfolio.upload') }}"
-                    enctype="multipart/form-data" style="display: none;">
-                    @csrf
-                    <input type="hidden" name="type" value="image">
-                    <input type="text" name="title" placeholder="Título (opcional)" maxlength="255">
-                    <textarea name="description" placeholder="Descrição (opcional)" maxlength="1000"
-                        rows="3"></textarea>
-                    <input type="file" name="file" accept="image/*" required>
-                    <div class="form-actions">
-                        <button type="submit" class="btn-submit">Enviar</button>
-                        <button type="button" class="btn-cancel" onclick="hideUploadForm()">Cancelar</button>
-                    </div>
-                </form>
-
-                <!-- Form de Link -->
-                <form id="form-link" class="upload-form" method="POST" action="{{ route('portfolio.upload') }}"
-                    style="display: none;">
-                    @csrf
-                    <input type="hidden" name="type" value="link">
-                    <input type="text" name="title" placeholder="Título (opcional)" maxlength="255">
-                    <textarea name="description" placeholder="Descrição (opcional)" maxlength="1000"
-                        rows="3"></textarea>
-                    <input type="url" name="link_url" placeholder="URL do repositório" required>
-                    <div class="form-actions">
-                        <button type="submit" class="btn-submit">Enviar</button>
-                        <button type="button" class="btn-cancel" onclick="hideUploadForm()">Cancelar</button>
-                    </div>
-                </form>
-            </div>
+            @endif
 
             <div class="portfolio-grid">
                 @forelse($portfolioItems as $item)
                     <div class="portfolio-item">
                         @if($item->type === 'image')
                             <div class="portfolio-image">
-                                <img src="{{ asset('storage/' . $item->file_path) }}" alt="{{ $item->title }}">
+                                <img src="{{ asset('storage/' . $item->file_path) }}"
+                                    alt="{{ $item->title ?? 'Portfolio item' }}">
                             </div>
                         @else
                             <div class="portfolio-link">
@@ -116,16 +133,19 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('portfolio.delete', $item->id) }}" class="delete-form">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn-delete"
-                                onclick="return confirm('Tem certeza que deseja remover este item?')">🗑️</button>
-                        </form>
+                        @if(!isset($isOwnProfile) || $isOwnProfile)
+                            <form method="POST" action="{{ route('portfolio.delete', $item->id) }}" class="delete-form">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-delete"
+                                    onclick="return confirm('Tem certeza que deseja remover este item?')">🗑️</button>
+                            </form>
+                        @endif
                     </div>
                 @empty
                     <div class="empty-portfolio">
-                        <p>Você ainda não tem itens no seu portfólio. Adicione seu primeiro projeto!</p>
+                        <p>{{ (!isset($isOwnProfile) || $isOwnProfile) ? 'Você ainda não tem itens no seu portfólio. Adicione seu primeiro projeto!' : 'Este usuário ainda não tem itens no portfólio.' }}
+                        </p>
                     </div>
                 @endforelse
             </div>
