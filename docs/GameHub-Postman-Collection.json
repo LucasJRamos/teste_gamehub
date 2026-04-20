@@ -1,0 +1,201 @@
+{
+  "info": {
+    "name": "GameHub API REST",
+    "_postman_id": "4b631bc1-3e53-4fb2-80af-9d765cf11234",
+    "description": "Colecao de documentacao da API REST do Projeto Integrador GameHub.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"lucasdev\",\n  \"email\": \"lucas@email.com\",\n  \"data_nascimento\": \"2003-05-10\",\n  \"password\": \"123456\",\n  \"password_confirmation\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/register",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "register"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"lucas@email.com\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "login"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Auth - Logout",
+      "request": {
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/logout",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "logout"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Profile - Me",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/profile",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "profile"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Profile - Public by Id",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/profile/2",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "profile",
+            "2"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Profile - Update",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"lucasdev\",\n  \"email\": \"lucas@email.com\",\n  \"data_nascimento\": \"2003-05-10\",\n  \"professional_title\": \"Game Programmer\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/profile/update",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "profile",
+            "update"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Portfolio - Upload Link",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Repositorio GitHub\",\n  \"description\": \"Codigo-fonte do projeto\",\n  \"type\": \"link\",\n  \"link_url\": \"https://github.com/usuario/projeto\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/portfolio/upload",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "portfolio",
+            "upload"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Portfolio - Delete",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/portfolio/10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "portfolio",
+            "10"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Explore - Search Users",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/explore?search=programmer",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "explore"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "programmer"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
