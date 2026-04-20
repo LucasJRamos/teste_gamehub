@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 wp14">
+<w:body>
+<w:p><w:r><w:rPr><w:sz w:val="32"/><w:b/></w:rPr><w:t xml:space="preserve">Documentacao da API REST - GameHub</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">1. Identificacao do Projeto</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Projeto Integrador: GameHub</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Tema: rede social de nicho para o ecossistema de games independentes no Brasil</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Grupo:</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">  - Lucas Jose Ramos Alves - 2412899</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">  - Murilo Cesar Ramos Melo - 2310194</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">  - Marcelo Alencar Quessada - 2321520</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">  - Mateus Pereira Teixeira - 2211825</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">2. Descricao Geral da API</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">O GameHub e uma plataforma web em desenvolvimento voltada para a divulgacao de jogos independentes, conexao entre estudios e profissionais e exposicao de portfolio tecnico e artistico. O backend foi desenvolvido com Laravel e atualmente o sistema encontra-se em fase de prototipo.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">As funcionalidades ja implementadas no Projeto Integrador cobrem autenticacao, perfil profissional, exploracao de usuarios e gestao de portfolio. Esta documentacao descreve a camada REST correspondente a essas funcionalidades reais do sistema.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Observacao importante sobre o estado atual do PI: no prototipo atual, varias rotas do Laravel ainda retornam views HTML e redirecionamentos, pois a aplicacao foi iniciada como sistema web server-side. Para atender ao padrao exigido nesta atividade, a documentacao abaixo apresenta essas mesmas operacoes no formato REST com respostas em JSON, preservando fielmente os recursos e regras de negocio ja existentes no projeto.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">3. Objetivo do Sistema</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">O objetivo do GameHub e criar um ecossistema digital especializado no mercado de games, com foco em tres frentes principais:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• divulgar jogos independentes em um ambiente de nicho;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• conectar estudios, desenvolvedores e freelancers;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• permitir a exibicao de perfis profissionais e portfolios.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">4. URL Base</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Ambiente local de desenvolvimento:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">http://127.0.0.1:8000</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">5. Tecnologias Utilizadas</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• PHP 8.4</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Laravel 12</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• SQLite no ambiente local</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Blade</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Vite</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Tailwind CSS configurado no projeto</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Laravel Auth com autenticacao baseada em sessao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">6. Formato de Resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">A padronizacao adotada nesta documentacao utiliza respostas em JSON.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Exemplo de resposta de sucesso:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Operacao realizada com sucesso&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: {}</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Exemplo de resposta de erro de validacao:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Erro de validacao&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;errors&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;email&quot;: [</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;O campo email e obrigatorio.&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    ]</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Exemplo de resposta para recurso nao encontrado:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Recurso nao encontrado.&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">7. Autenticacao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">7.1 Tipo de autenticacao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">O Projeto Integrador atualmente utiliza autenticacao baseada em sessao do Laravel, e nao JWT ou token Bearer.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">7.2 Como funciona</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">1. O usuario envia email e senha para o endpoint de login.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">2. O Laravel valida as credenciais com `Auth::attempt(...)`.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">3. A sessao do usuario e criada no servidor.</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">4. As proximas requisicoes autenticadas utilizam o cookie de sessao enviado automaticamente pelo navegador.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">7.3 Como utilizar no header</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Em ambiente web, o envio ocorre por cookie de sessao:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">X-XSRF-TOKEN: SEU_TOKEN_CSRF</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">7.4 Fluxo basico de autenticacao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">login -&gt; criacao da sessao -&gt; acesso a rotas protegidas -&gt; logout</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">8. Ferramenta de Documentacao Escolhida</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Ferramenta escolhida: Postman</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Justificativa: o Postman permite organizar requisicoes por colecoes, definir exemplos de body, testar endpoints rapidamente em ambiente local e facilitar o compartilhamento da documentacao entre integrantes do grupo.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">9. Endpoints Documentados</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.1 Cadastro de usuario</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: POST</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/register`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: cadastra um novo usuario no sistema.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Body:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data_nascimento&quot;: &quot;2003-05-10&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;password&quot;: &quot;123456&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;password_confirmation&quot;: &quot;123456&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">POST /register</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Content-Type: application/json</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data_nascimento&quot;: &quot;2003-05-10&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;password&quot;: &quot;123456&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;password_confirmation&quot;: &quot;123456&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Cadastro realizado com sucesso!&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;id&quot;: 1,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;data_nascimento&quot;: &quot;2003-05-10&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `201 Created` - cadastro realizado com sucesso</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `422 Unprocessable Entity` - erro de validacao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.2 Login</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: POST</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/login`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: autentica o usuario com email e senha.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Body:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;password&quot;: &quot;123456&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">POST /login</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Content-Type: application/json</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;password&quot;: &quot;123456&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Login realizado com sucesso!&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;id&quot;: 1,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;email&quot;: &quot;lucas@email.com&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `200 OK` - autenticacao realizada</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - credenciais invalidas</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `422 Unprocessable Entity` - dados ausentes ou invalidos</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.3 Logout</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: POST</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/logout`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: encerra a sessao do usuario autenticado.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Nao possui parametros no body.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">POST /logout</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Logout realizado com sucesso!&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `200 OK` - logout realizado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - usuario nao autenticado</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.4 Buscar perfil do usuario autenticado</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: GET</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/profile`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: retorna os dados do perfil do usuario autenticado, incluindo itens de portfolio.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Nao possui path params nem query params.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">GET /profile</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Perfil carregado com sucesso&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;user&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;id&quot;: 1,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;data_nascimento&quot;: &quot;2003-05-10&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;professional_title&quot;: &quot;Game Programmer&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;profile_photo&quot;: &quot;profile_photos/avatar.png&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    },</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;portfolio_items&quot;: [</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;id&quot;: 1,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;title&quot;: &quot;Meu jogo indie&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;description&quot;: &quot;Protótipo de plataforma 2D&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;type&quot;: &quot;image&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;file_path&quot;: &quot;portfolio/projeto1.png&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;link_url&quot;: null</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    ]</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `200 OK` - perfil encontrado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - usuario nao autenticado</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.5 Buscar perfil publico por ID</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: GET</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/profile/{id}`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: retorna o perfil publico de outro usuario cadastrado.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Path params:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `id` - identificador numerico do usuario</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">GET /profile/2</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Perfil publico carregado com sucesso&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;user&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;id&quot;: 2,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;username&quot;: &quot;murilodev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;email&quot;: &quot;murilo@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;professional_title&quot;: &quot;2D Artist&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;profile_photo&quot;: null</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    },</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;portfolio_items&quot;: [</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;id&quot;: 5,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;title&quot;: &quot;Concept art&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;description&quot;: &quot;Arte conceitual para RPG&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;type&quot;: &quot;image&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;file_path&quot;: &quot;portfolio/concept.png&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">        &quot;link_url&quot;: null</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    ]</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `200 OK` - perfil encontrado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - usuario nao autenticado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `404 Not Found` - usuario nao encontrado</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.6 Atualizar perfil</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: PUT</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/profile/update`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: atualiza os dados do perfil do usuario autenticado.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Body:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data_nascimento&quot;: &quot;2003-05-10&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;professional_title&quot;: &quot;Game Programmer&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Observacao: na implementacao real do prototipo, este endpoint tambem aceita upload de `profile_photo` via `multipart/form-data`.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">PUT /profile/update</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Content-Type: application/json</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data_nascimento&quot;: &quot;2003-05-10&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;professional_title&quot;: &quot;Game Programmer&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Perfil atualizado com sucesso!&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;id&quot;: 1,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;username&quot;: &quot;lucasdev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;email&quot;: &quot;lucas@email.com&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;data_nascimento&quot;: &quot;2003-05-10&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;professional_title&quot;: &quot;Game Programmer&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `200 OK` - perfil atualizado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - usuario nao autenticado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `422 Unprocessable Entity` - erro de validacao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.7 Adicionar item ao portfolio</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: POST</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/portfolio/upload`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: adiciona um item ao portfolio do usuario autenticado.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Body para item do tipo link:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;title&quot;: &quot;Repositorio GitHub&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;description&quot;: &quot;Codigo-fonte do projeto&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;type&quot;: &quot;link&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;link_url&quot;: &quot;https://github.com/usuario/projeto&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Body para item do tipo imagem:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">multipart/form-data</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">title=Meu jogo</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">description=Protótipo em Unity</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">type=image</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">file=(arquivo de imagem)</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">POST /portfolio/upload</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Content-Type: application/json</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;title&quot;: &quot;Repositorio GitHub&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;description&quot;: &quot;Codigo-fonte do projeto&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;type&quot;: &quot;link&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;link_url&quot;: &quot;https://github.com/usuario/projeto&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Item adicionado ao portfolio!&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;id&quot;: 10,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;title&quot;: &quot;Repositorio GitHub&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;description&quot;: &quot;Codigo-fonte do projeto&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;type&quot;: &quot;link&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;file_path&quot;: null,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;link_url&quot;: &quot;https://github.com/usuario/projeto&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `201 Created` - item criado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - usuario nao autenticado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `422 Unprocessable Entity` - erro de validacao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.8 Remover item do portfolio</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: DELETE</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/portfolio/{id}`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: remove um item do portfolio pertencente ao usuario autenticado.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Path params:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `id` - identificador numerico do item de portfolio</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">DELETE /portfolio/10</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Item removido do portfolio!&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `200 OK` - item removido</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - usuario nao autenticado</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `404 Not Found` - item nao encontrado ou nao pertence ao usuario</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="24"/><w:b/></w:rPr><w:t xml:space="preserve">9.9 Explorar usuarios</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Metodo HTTP: GET</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• URL: `/explore`</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• Descricao: lista usuarios da plataforma com opcao de busca por nome ou titulo profissional.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Parametros</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Query params:</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `search` - termo de busca opcional</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de requisicao</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">GET /explore?search=programmer</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">Cookie: laravel-session=SEU_COOKIE_DE_SESSAO</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Exemplo de resposta</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">{</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;message&quot;: &quot;Usuarios carregados com sucesso&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;data&quot;: [</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;id&quot;: 2,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;username&quot;: &quot;murilodev&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;professional_title&quot;: &quot;Game Programmer&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;profile_photo&quot;: null</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    },</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;id&quot;: 3,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;username&quot;: &quot;marcelogames&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;professional_title&quot;: &quot;Software Engineer&quot;,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">      &quot;profile_photo&quot;: &quot;profile_photos/marcelo.png&quot;</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  ],</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  &quot;pagination&quot;: {</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;current_page&quot;: 1,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;per_page&quot;: 10,</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">    &quot;total&quot;: 2</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">  }</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/><w:rFonts w:ascii="Consolas" w:hAnsi="Consolas"/></w:rPr><w:t xml:space="preserve">}</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">#### Codigos de status HTTP</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `200 OK` - usuarios listados</w:t></w:r></w:p>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">• `401 Unauthorized` - usuario nao autenticado</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="28"/><w:b/></w:rPr><w:t xml:space="preserve">10. Consideracoes Finais</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">O backend atual do GameHub ainda esta em fase de prototipo visual e funcional. Mesmo assim, os recursos centrais do sistema ja estao definidos: autenticacao, perfil profissional, exploracao de usuarios e portfolio. Por isso, a documentacao apresentada reflete diretamente as operacoes ja implementadas no PI e organiza essas operacoes sob o padrao de uma API REST.</w:t></w:r></w:p>
+<w:p/>
+<w:p><w:r><w:rPr><w:sz w:val="22"/></w:rPr><w:t xml:space="preserve">Como evolucao futura do projeto, essa documentacao pode ser ampliada para abranger feed de publicacoes, mensagens entre usuarios, servicos para freelancers, mecanismos de recomendacao e camadas extras de seguranca para transacoes e dados sensiveis.</w:t></w:r></w:p>
+<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/></w:sectPr>
+</w:body></w:document>
