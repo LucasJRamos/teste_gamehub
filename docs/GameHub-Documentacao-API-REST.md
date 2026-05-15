@@ -3,20 +3,19 @@
 ## 1. Versao documentada
 
 - Projeto: Game Hub
-- Versao: `1.3`
+- Versao: `1.4`
 - Marco: `6o periodo - Fase 02`
-- Escopo: integracao completa entre frontend React + Inertia.js e backend Laravel 12
+- Escopo: integracao frontend React + Inertia.js e backend Laravel 12, com respostas JSON nas rotas criticas para evidencia tecnica
 
 ## 2. Grupo
 
-- Lucas Jose Ramos Alves - 2412899
 - Murilo Cesar Ramos Melo - 2310194
 - Marcelo Alencar Quessada - 2321520
-- Mateus Pereira Teixeira - 2211825
+- Otavio - 2320135
 
 ## 3. Descricao geral
 
-O Game Hub e uma plataforma voltada ao ecossistema de games independentes. Nesta fase, o projeto passou a operar com frontend SPA em React + Inertia.js consumindo o backend Laravel real, sem mocks, com autenticacao por sessao, perfis, portfolio, busca e interacoes sociais.
+O Game Hub e uma plataforma voltada ao ecossistema de games independentes. Nesta fase, o projeto passou a operar com frontend SPA em React + Inertia.js usando rotas reais do Laravel, sem mocks, com autenticacao por sessao, perfis, portfolio, busca e interacoes sociais. As rotas principais tambem respondem JSON quando chamadas com `Accept: application/json`, o que permite demonstrar payloads e regras de negocio sem depender apenas da tela.
 
 ## 4. Base URL
 
@@ -31,7 +30,7 @@ http://127.0.0.1:8000
 - React 19
 - Inertia.js
 - Vite
-- SQLite em desenvolvimento local
+- SQLite em desenvolvimento local (`DB_CONNECTION=sqlite`)
 - Autenticacao baseada em sessao
 
 ## 6. Padrao de resposta
@@ -91,8 +90,8 @@ Body:
 
 ```json
 {
-  "username": "lucasdev",
-  "email": "lucas@email.com",
+  "username": "murilodev",
+  "email": "murilo@example.com",
   "data_nascimento": "2003-05-10",
   "password": "123456",
   "password_confirmation": "123456"
@@ -113,7 +112,7 @@ Body:
 
 ```json
 {
-  "email": "lucas@email.com",
+  "email": "murilo@example.com",
   "password": "123456"
 }
 ```
@@ -140,31 +139,52 @@ Status:
 - Metodo: `GET`
 - URL: `/dashboard`
 
-Descricao: retorna a pagina Inertia autenticada com dados do usuario logado e sugestoes.
+Descricao: retorna a pagina Inertia autenticada com dados do usuario logado e sugestoes. Com `Accept: application/json`, retorna payload estruturado para verificacao.
 
 Status:
 
 - `200 OK`
 - `302 Found` para `/login` quando nao autenticado
 
+Resposta JSON:
+
+```json
+{
+  "message": "Dashboard carregado com sucesso.",
+  "data": {
+    "current_user": {
+      "id": 1,
+      "username": "viewer-dev",
+      "followers_count": 0,
+      "following_count": 0,
+      "portfolio_items_count": 0
+    },
+    "suggestions": []
+  }
+}
+```
+
 ### 8.5 Perfil do usuario autenticado
 
 - Metodo: `GET`
 - URL: `/profile`
 
-Resposta JSON:
+Resposta JSON com `Accept: application/json`:
 
 ```json
 {
-  "message": "Perfil carregado com sucesso",
+  "message": "Perfil carregado com sucesso.",
   "data": {
-    "user": {
-      "id": 1,
-      "username": "lucasdev",
-      "email": "lucas@email.com",
-      "professional_title": "Game Programmer"
+    "profile": {
+      "user": {
+        "id": 1,
+        "username": "murilodev",
+        "email": "murilo@example.com",
+        "professional_title": "Game Programmer"
+      },
+      "portfolio_items": []
     },
-    "portfolio_items": []
+    "suggestions": []
   }
 }
 ```
@@ -178,6 +198,7 @@ Regras:
 
 - perfis bloqueados nao devem ser exibidos
 - se houver bloqueio entre os usuarios, o backend responde `404 Not Found`
+- com `Accept: application/json`, retorna `profile` e `suggestions`
 
 ### 8.7 Atualizacao de perfil
 
@@ -256,6 +277,13 @@ Resposta JSON:
       "has_blocked": false
     }
   ],
+  "blocked_users": [
+    {
+      "id": 4,
+      "username": "blocked-dev",
+      "has_blocked": true
+    }
+  ],
   "pagination": {
     "current_page": 1,
     "last_page": 1,
@@ -300,6 +328,7 @@ Regras:
 - nao permite bloquear a si mesmo
 - remove relacoes de follow entre os dois usuarios
 - remove o perfil da busca e da visualizacao publica
+- mantem o usuario em `blocked_users` para permitir desbloqueio pelo frontend
 
 Status:
 
@@ -328,3 +357,4 @@ Status:
 ## 10. Observacoes finais
 
 Esta documentacao reflete o estado real da Fase 02 do projeto, em que a navegacao principal ocorre via Inertia.js e as mesmas regras tambem podem ser consumidas por requisicoes HTTP/JSON para testes, integracao e validacao dos endpoints.
+

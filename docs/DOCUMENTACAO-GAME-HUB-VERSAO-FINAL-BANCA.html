@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <title>Game Hub - Documento de Especificacao Final para Banca</title>
+    <style>
+        @page { margin: 18mm 16mm; size: A4; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            color: #1f2933;
+            background: #fff;
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        h1, h2, h3, h4 { color: #111827; line-height: 1.2; margin: 0 0 8px; }
+        h1 { font-size: 30px; }
+        h2 { margin-top: 26px; padding-top: 12px; border-top: 2px solid #e5e7eb; font-size: 20px; }
+        h3 { margin-top: 18px; font-size: 15px; }
+        h4 { margin-top: 14px; font-size: 13px; }
+        p { margin: 0 0 9px; }
+        ul, ol { margin: 7px 0 12px 20px; padding: 0; }
+        li { margin: 3px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0 15px; page-break-inside: avoid; }
+        th, td { border: 1px solid #d9dee7; padding: 7px 8px; vertical-align: top; text-align: left; }
+        th { background: #f3f4f6; color: #111827; font-weight: 700; }
+        code { color: #9a3412; font-family: Consolas, "Courier New", monospace; font-size: 11px; }
+        pre {
+            margin: 9px 0 14px;
+            padding: 10px 12px;
+            white-space: pre-wrap;
+            border: 1px solid #d9dee7;
+            border-radius: 6px;
+            background: #f8fafc;
+            color: #111827;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 10.5px;
+            line-height: 1.45;
+            page-break-inside: avoid;
+        }
+        .cover {
+            min-height: 620px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 3px solid #111827;
+            margin-bottom: 22px;
+        }
+        .cover small {
+            color: #c2410c;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+        .subtitle { font-size: 15px; color: #4b5563; max-width: 720px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 26px; max-width: 760px; }
+        .meta { border: 1px solid #d9dee7; border-radius: 8px; padding: 10px 12px; background: #f9fafb; }
+        .meta strong { display: block; margin-bottom: 3px; color: #111827; }
+        .callout { border-left: 4px solid #c2410c; background: #fff7ed; padding: 10px 12px; margin: 12px 0 16px; page-break-inside: avoid; }
+        .ok { border-left-color: #047857; background: #ecfdf5; }
+        .warn { border-left-color: #b45309; background: #fffbeb; }
+        .diagram { padding: 12px; border: 1px solid #d9dee7; background: #f8fafc; border-radius: 8px; margin: 10px 0 16px; page-break-inside: avoid; }
+        .diagram-row { display: flex; align-items: stretch; gap: 7px; margin: 7px 0; }
+        .box { flex: 1; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; background: #fff; min-height: 54px; }
+        .arrow { align-self: center; color: #c2410c; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <section class="cover">
+        <small>Projeto Integrador - 6o Periodo - Envio Final para Banca</small>
+        <h1>Game Hub<br>Documento de Especificacao Final</h1>
+        <p class="subtitle">
+            Versao consolidada para apresentacao, considerando os feedbacks recebidos na Fase 02.
+            O documento demonstra, com base no codigo real do projeto, a integracao entre frontend React/Inertia
+            e backend Laravel, incluindo rotas, services, payloads, regras de negocio, testes e build.
+        </p>
+        <div class="meta-grid">
+            <div class="meta"><strong>Versao do documento</strong>1.5 - Versao final para banca</div>
+            <div class="meta"><strong>Data da revisao</strong>15/05/2026</div>
+            <div class="meta"><strong>Aplicacao analisada</strong>Laravel 12 + React 19 + Inertia.js</div>
+            <div class="meta"><strong>Banco local</strong>SQLite em <code>database/database.sqlite</code></div>
+        </div>
+        <h3>Equipe</h3>
+        <p>
+            Murilo Cesar Ramos Melo - 2310194<br>
+            Marcelo Alencar Quessada - 2321520<br>
+            Otavio - 2320135
+        </p>
+    </section>
+
+    <h2>Parte 00 - Historico de Versao do Projeto</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Versao</th>
+                <th>Marco</th>
+                <th>Responsavel</th>
+                <th>Registro da alteracao</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.0</td>
+                <td>Fase 01</td>
+                <td>Grupo</td>
+                <td>Documento inicial, definicao do produto, requisitos e arquitetura prevista.</td>
+            </tr>
+            <tr>
+                <td>1.2</td>
+                <td>6o periodo - Fase 01</td>
+                <td>Grupo</td>
+                <td>Registro do backend em desenvolvimento, regras de negocio, modelo de dados e requisitos planejados.</td>
+            </tr>
+            <tr>
+                <td>1.4</td>
+                <td>Revisao da Fase 02</td>
+                <td>Grupo</td>
+                <td>Documento corrigido com evidencias de integracao frontend/backend, payloads, services, testes e build.</td>
+            </tr>
+            <tr>
+                <td>1.5</td>
+                <td>Envio final para banca</td>
+                <td>Grupo</td>
+                <td>Consolidacao final no formato PDF, com requisitos da Fase 01 comparados ao estado real da Fase 02.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Parte 01 - Identificacao do Produto, Equipe e Repositorio</h2>
+    <h3>Produto</h3>
+    <p>
+        O Game Hub e uma aplicacao web voltada ao ecossistema de games independentes. O objetivo e permitir
+        que desenvolvedores, artistas e profissionais da area mantenham um perfil, publiquem portfolio,
+        descubram outros usuarios e realizem interacoes sociais basicas como seguir, deixar de seguir,
+        bloquear e desbloquear perfis.
+    </p>
+
+    <h3>Equipe atual</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Integrante</th>
+                <th>Matricula</th>
+                <th>Participacao no projeto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Murilo Cesar Ramos Melo</td>
+                <td>2310194</td>
+                <td>Implementacao, revisao da integracao, testes e consolidacao da entrega.</td>
+            </tr>
+            <tr>
+                <td>Marcelo Alencar Quessada</td>
+                <td>2321520</td>
+                <td>Apoio na documentacao, revisao de requisitos e validacao funcional.</td>
+            </tr>
+            <tr>
+                <td>Otavio</td>
+                <td>2320135</td>
+                <td>Apoio no projeto e na organizacao da entrega final.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Artefatos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Artefato</th>
+                <th>Local</th>
+                <th>Situacao</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Codigo-fonte</td>
+                <td>Pasta <code>teste_gamehub</code></td>
+                <td>Disponivel localmente, com Laravel, React, Inertia, testes e build.</td>
+            </tr>
+            <tr>
+                <td>Documento final</td>
+                <td><code>DOCUMENTO DE ESPECIFICACAO GAME HUB - VERSAO FINAL BANCA.pdf</code></td>
+                <td>PDF final para envio da Fase 03.</td>
+            </tr>
+            <tr>
+                <td>Links externos</td>
+                <td>Nao informados no repositorio local</td>
+                <td>Nao foram identificados links publicos externos para validar nesta revisao.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Parte 02 - Planejamento do Semestre</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Atividade tecnica</th>
+                <th>Status final</th>
+                <th>Evidencia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Autenticacao integrada</td>
+                <td>Concluida</td>
+                <td><code>AuthController</code>, <code>AuthService</code>, <code>Login.jsx</code>, <code>Register.jsx</code>.</td>
+            </tr>
+            <tr>
+                <td>Dashboard autenticado</td>
+                <td>Concluido</td>
+                <td><code>DashboardController</code> entrega usuario atual e sugestoes para <code>Dashboard/Index.jsx</code>.</td>
+            </tr>
+            <tr>
+                <td>Perfil e portfolio</td>
+                <td>Concluido</td>
+                <td><code>ProfileController</code>, <code>ProfileService</code>, <code>PortfolioManager.jsx</code>.</td>
+            </tr>
+            <tr>
+                <td>Busca de usuarios</td>
+                <td>Concluida</td>
+                <td><code>UserDirectoryService</code> filtra por nome/titulo e remove usuarios bloqueados da busca comum.</td>
+            </tr>
+            <tr>
+                <td>Follow, block e unblock</td>
+                <td>Concluido</td>
+                <td><code>SocialGraphService</code>, <code>FollowController</code>, <code>BlockController</code>, <code>UserActions.jsx</code>.</td>
+            </tr>
+            <tr>
+                <td>Testes e build</td>
+                <td>Concluidos</td>
+                <td><code>php artisan test</code> e <code>npm run build</code> executados com sucesso.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Parte 03 - Requisitos Planejados e Estado Atual</h2>
+    <p>
+        A tabela abaixo recupera os requisitos registrados no PDF da Fase 01 e compara com o que existe no codigo
+        ao final da Fase 02. O objetivo e demonstrar evolucao sem afirmar que modulos futuros ja estao prontos.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Requisito planejado</th>
+                <th>Status final</th>
+                <th>Evidencia atual</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>RF01</td><td>Cadastro de usuarios</td><td>Implementado e integrado</td><td><code>POST /register</code>, <code>RegisterRequest</code>, <code>AuthService</code>.</td></tr>
+            <tr><td>RF02</td><td>Autenticacao de usuarios</td><td>Implementado e integrado</td><td><code>POST /login</code>, sessao Laravel e redirect para dashboard.</td></tr>
+            <tr><td>RF03</td><td>Edicao de perfil</td><td>Implementado e integrado</td><td><code>PUT /profile</code>, upload opcional e validacao.</td></tr>
+            <tr><td>RF04</td><td>Sistema de seguidores</td><td>Implementado e integrado</td><td><code>POST/DELETE /users/{user}/follow</code> e tabela <code>follows</code>.</td></tr>
+            <tr><td>RF05</td><td>Bloqueio de usuarios</td><td>Implementado e integrado</td><td><code>POST/DELETE /users/{user}/block</code>, tabela <code>blocks</code> e lista de bloqueados.</td></tr>
+            <tr><td>RF06</td><td>Busca de usuarios</td><td>Implementado e integrado</td><td><code>GET /users?search=...</code>, paginacao e filtro de bloqueio.</td></tr>
+            <tr><td>RF07</td><td>Visualizacao de perfis publicos</td><td>Implementado e integrado</td><td><code>GET /users/{user}</code>, <code>Profiles/Show.jsx</code> e regra de invisibilidade.</td></tr>
+            <tr><td>RF08</td><td>Configuracoes da conta</td><td>Parcial</td><td>Perfil permite alterar nome, e-mail, data de nascimento, titulo e foto; ainda nao ha tela separada de preferencias.</td></tr>
+            <tr><td>RF09</td><td>Feed de conteudo</td><td>Parcial</td><td>Portfolio publica links e imagens; ainda nao ha feed geral.</td></tr>
+            <tr><td>RF10</td><td>Comunidades</td><td>Planejado</td><td>Sem model, migration ou tela nesta versao.</td></tr>
+            <tr><td>RF11</td><td>Eventos</td><td>Planejado</td><td>Sem implementacao nesta versao.</td></tr>
+            <tr><td>RF12</td><td>Chat entre usuarios</td><td>Planejado</td><td>Sem implementacao nesta versao.</td></tr>
+            <tr><td>RF13</td><td>Marketplace de servicos</td><td>Planejado</td><td>Sem implementacao nesta versao.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="callout ok">
+        <strong>Leitura da evolucao:</strong> os requisitos centrais para demonstrar integracao foram implementados.
+        Os modulos maiores, como chat, eventos, comunidades e marketplace, permanecem como backlog para fases futuras.
+    </div>
+
+    <h2>20. Arquitetura Geral do Sistema</h2>
+    <p>
+        A arquitetura final usa Laravel como backend e React com Inertia.js como frontend SPA. O navegador envia
+        acoes para rotas Laravel; o backend valida dados, executa regras nos services, persiste no SQLite via
+        Eloquent e retorna props Inertia ou JSON quando a requisicao pede <code>Accept: application/json</code>.
+    </p>
+    <div class="diagram">
+        <div class="diagram-row">
+            <div class="box"><strong>Browser</strong><br>React, Inertia, formularios e navegacao SPA.</div>
+            <div class="arrow">-&gt;</div>
+            <div class="box"><strong>Rotas Laravel</strong><br><code>routes/web.php</code>, middleware <code>guest</code> e <code>auth</code>.</div>
+            <div class="arrow">-&gt;</div>
+            <div class="box"><strong>Controllers</strong><br>Orquestram requests, services, resources e respostas.</div>
+        </div>
+        <div class="diagram-row">
+            <div class="box"><strong>Requests</strong><br>Validacao de login, cadastro, perfil e portfolio.</div>
+            <div class="arrow">-&gt;</div>
+            <div class="box"><strong>Services</strong><br>Auth, Profile, SocialGraph e UserDirectory.</div>
+            <div class="arrow">-&gt;</div>
+            <div class="box"><strong>Banco</strong><br>SQLite com users, portfolio_items, follows e blocks.</div>
+        </div>
+    </div>
+
+    <h3>Evolucao arquitetural desde a Fase 01</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Ponto</th>
+                <th>Fase 01</th>
+                <th>Versao final</th>
+                <th>Ganho tecnico</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Estado do sistema</td>
+                <td>Backend principal em implementacao.</td>
+                <td>Frontend e backend conectados nos fluxos principais.</td>
+                <td>O usuario executa operacoes reais pela interface.</td>
+            </tr>
+            <tr>
+                <td>Arquitetura</td>
+                <td>Descricao conceitual em camadas.</td>
+                <td>Camadas mapeadas para arquivos reais do repositorio.</td>
+                <td>Mais coerencia entre documento e codigo.</td>
+            </tr>
+            <tr>
+                <td>Regras sociais</td>
+                <td>Previstas em texto.</td>
+                <td>Implementadas em <code>SocialGraphService</code> e testadas.</td>
+                <td>Regras verificaveis por endpoint e teste.</td>
+            </tr>
+            <tr>
+                <td>Banco</td>
+                <td>Documento citava MySQL como previsao.</td>
+                <td>Projeto local usa SQLite conforme <code>.env</code>.</td>
+                <td>Documento ajustado ao ambiente real de avaliacao.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>21. Tecnologias e Ferramentas do Projeto</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Camada</th>
+                <th>Tecnologia</th>
+                <th>Onde aparece</th>
+                <th>Uso real</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Backend</td><td>PHP + Laravel 12</td><td><code>composer.json</code></td><td>Rotas, controllers, requests, ORM, sessao e testes.</td></tr>
+            <tr><td>Frontend</td><td>React 19</td><td><code>resources/js/Pages</code></td><td>Telas e componentes da experiencia SPA.</td></tr>
+            <tr><td>Integracao</td><td>Inertia.js</td><td><code>resources/js/app.js</code>, <code>HandleInertiaRequests.php</code></td><td>Comunica React e Laravel usando sessao e props.</td></tr>
+            <tr><td>Build</td><td>Vite</td><td><code>vite.config.js</code></td><td>Compila os assets finais em <code>public/build</code>.</td></tr>
+            <tr><td>Banco local</td><td>SQLite</td><td><code>.env</code></td><td>Persistencia local sem servidor externo.</td></tr>
+            <tr><td>Testes</td><td>PHPUnit/Laravel Test</td><td><code>tests/Feature</code></td><td>Validacao de autenticacao, busca, perfil, follow e block.</td></tr>
+        </tbody>
+    </table>
+
+    <h2>22. Implementacao por Camadas do Sistema</h2>
+    <h3>22.1 Frontend</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Tela/componente</th>
+                <th>Funcionalidade</th>
+                <th>Integracao real</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><code>Auth/Login.jsx</code></td><td>Login</td><td>Envia <code>POST /login</code> e mostra erros de validacao.</td></tr>
+            <tr><td><code>Auth/Register.jsx</code></td><td>Cadastro</td><td>Envia <code>POST /register</code>, autentica e redireciona.</td></tr>
+            <tr><td><code>Dashboard/Index.jsx</code></td><td>Dashboard</td><td>Recebe usuario atual e sugestoes do backend.</td></tr>
+            <tr><td><code>Profiles/Edit.jsx</code></td><td>Editar perfil</td><td>Envia <code>PUT /profile</code> com <code>forceFormData</code>.</td></tr>
+            <tr><td><code>PortfolioManager.jsx</code></td><td>Portfolio</td><td>Cria e remove links/imagens por rotas Laravel.</td></tr>
+            <tr><td><code>Users/Index.jsx</code></td><td>Busca</td><td>Busca dinamica por <code>GET /users</code> com debounce.</td></tr>
+            <tr><td><code>UserActions.jsx</code></td><td>Follow/block/unblock</td><td>Usa links vindos do <code>UserResource</code>.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>22.2 Backend</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Endpoint</th>
+                <th>Controller</th>
+                <th>Regra aplicada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><code>POST /register</code></td><td><code>AuthController</code></td><td>Valida dados, cria usuario, autentica sessao.</td></tr>
+            <tr><td><code>POST /login</code></td><td><code>AuthController</code></td><td>Valida credenciais e regenera sessao.</td></tr>
+            <tr><td><code>GET /dashboard</code></td><td><code>DashboardController</code></td><td>Carrega usuario e sugestoes.</td></tr>
+            <tr><td><code>GET /profile</code></td><td><code>ProfileController</code></td><td>Carrega perfil, portfolio e sugestoes.</td></tr>
+            <tr><td><code>PUT /profile</code></td><td><code>ProfileController</code></td><td>Valida e atualiza dados/foto.</td></tr>
+            <tr><td><code>POST /portfolio/upload</code></td><td><code>ProfileController</code></td><td>Cria item de portfolio link ou imagem.</td></tr>
+            <tr><td><code>GET /users</code></td><td><code>UserDirectoryController</code></td><td>Busca usuarios visiveis e lista bloqueados.</td></tr>
+            <tr><td><code>POST/DELETE /users/{user}/follow</code></td><td><code>FollowController</code></td><td>Segue/deixa de seguir, impedindo autoacao.</td></tr>
+            <tr><td><code>POST/DELETE /users/{user}/block</code></td><td><code>BlockController</code></td><td>Bloqueia/desbloqueia e remove follows entre usuarios.</td></tr>
+        </tbody>
+    </table>
+
+    <h3>22.3 Integracao Frontend e Backend</h3>
+    <p>
+        A comunicacao principal ocorre por Inertia. O frontend envia formularios e acoes para rotas Laravel; o
+        backend valida, executa services, persiste no banco e devolve props para a tela. Para demonstracao tecnica,
+        rotas criticas tambem retornam JSON quando chamadas com <code>Accept: application/json</code>.
+    </p>
+
+    <h4>Exemplo: login JSON</h4>
+    <pre>POST /login
+Accept: application/json
+
+{
+  "email": "murilo@example.com",
+  "password": "123456"
+}</pre>
+    <pre>200 OK
+{
+  "message": "Login realizado com sucesso!",
+  "data": {
+    "id": 1,
+    "username": "murilodev",
+    "email": "murilo@example.com",
+    "links": {
+      "profile": "/profile",
+      "follow": "/users/1/follow",
+      "block": "/users/1/block"
+    }
+  }
+}</pre>
+
+    <h4>Exemplo: busca com bloqueio aplicado</h4>
+    <pre>GET /users?search=dev
+Accept: application/json
+
+200 OK
+{
+  "message": "Usuarios carregados com sucesso.",
+  "data": [
+    { "username": "visible-dev", "has_blocked": false }
+  ],
+  "blocked_users": [
+    { "username": "blocked-dev", "has_blocked": true }
+  ],
+  "pagination": {
+    "current_page": 1,
+    "last_page": 1,
+    "per_page": 9,
+    "total": 1
+  }
+}</pre>
+
+    <h4>Exemplo: bloquear usuario</h4>
+    <pre>POST /users/2/block
+Accept: application/json
+
+201 Created
+{
+  "message": "Usuario bloqueado com sucesso.",
+  "data": {
+    "id": 2,
+    "username": "blocked-dev",
+    "has_blocked": true
+  }
+}</pre>
+
+    <p>
+        Efeito persistido: cria registro em <code>blocks</code> e remove follows entre os dois usuarios.
+        Efeito visual: o usuario bloqueado sai da busca comum e aparece apenas na lista de bloqueados para desbloqueio.
+    </p>
+
+    <h2>Qualidade, Testes e Evidencias</h2>
+    <pre>php artisan test
+
+Tests: 9 passed (71 assertions)</pre>
+    <pre>npm run build
+
+vite v7.3.2 building client environment for production...
+600 modules transformed.
+public/build/manifest.json
+public/build/assets/app-CQg5N2Fz.css
+public/build/assets/app-SFA4ad01.js
+built in 1.18s</pre>
+
+    <h2>Resposta Direta aos Feedbacks da Fase 02</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ponto criticado</th>
+                <th>Correcao realizada</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Documento generico, sem evidencias concretas</td>
+                <td>Foram incluidos fluxos reais, endpoints, payloads, status HTTP, services e testes.</td>
+            </tr>
+            <tr>
+                <td>Arquitetura pouco conectada ao codigo</td>
+                <td>A arquitetura agora aponta arquivos reais e explica Pages, Controllers, Requests, Services, Resources e Models.</td>
+            </tr>
+            <tr>
+                <td>Diagramas superficiais</td>
+                <td>Foi adicionada visao em camadas e evolucao arquitetural desde a Fase 01.</td>
+            </tr>
+            <tr>
+                <td>Regras de negocio sem demonstracao</td>
+                <td>Follow, block, busca, perfil e portfolio foram ligados a endpoints, tabelas e testes.</td>
+            </tr>
+            <tr>
+                <td>Seções obrigatorias incompletas</td>
+                <td>Historico, planejamento, requisitos, arquitetura, tecnologias, frontend, backend e integracao foram atualizados.</td>
+            </tr>
+            <tr>
+                <td>Evolucao tecnica pouco evidente</td>
+                <td>A matriz RF01-RF13 mostra o que saiu do planejamento e o que foi implementado ou mantido em backlog.</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

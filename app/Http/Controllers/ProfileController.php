@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Services\ProfileService;
 use App\Services\SocialGraphService;
 use App\Services\UserDirectoryService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -25,28 +26,52 @@ class ProfileController extends Controller
     ) {
     }
 
-    public function show(Request $request): Response
+    public function show(Request $request): Response|JsonResponse
     {
         $user = $this->profileService->loadProfile($request->user());
+        $profile = ProfileResource::make($user)->resolve($request);
+        $suggestions = UserResource::collection(
+            $this->userDirectoryService->suggestions($request->user(), 3)
+        )->resolve($request);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Perfil carregado com sucesso.',
+                'data' => [
+                    'profile' => $profile,
+                    'suggestions' => $suggestions,
+                ],
+            ]);
+        }
 
         return Inertia::render('Profiles/Show', [
-            'profile' => ProfileResource::make($user)->resolve($request),
-            'suggestions' => UserResource::collection(
-                $this->userDirectoryService->suggestions($request->user(), 3)
-            )->resolve($request),
+            'profile' => $profile,
+            'suggestions' => $suggestions,
         ]);
     }
 
-    public function showUser(Request $request, User $user): Response
+    public function showUser(Request $request, User $user): Response|JsonResponse
     {
         $this->socialGraphService->ensureVisible($request->user(), $user);
         $profile = $this->profileService->loadProfile($user);
+        $profileData = ProfileResource::make($profile)->resolve($request);
+        $suggestions = UserResource::collection(
+            $this->userDirectoryService->suggestions($request->user(), 3)
+        )->resolve($request);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Perfil publico carregado com sucesso.',
+                'data' => [
+                    'profile' => $profileData,
+                    'suggestions' => $suggestions,
+                ],
+            ]);
+        }
 
         return Inertia::render('Profiles/Show', [
-            'profile' => ProfileResource::make($profile)->resolve($request),
-            'suggestions' => UserResource::collection(
-                $this->userDirectoryService->suggestions($request->user(), 3)
-            )->resolve($request),
+            'profile' => $profileData,
+            'suggestions' => $suggestions,
         ]);
     }
 

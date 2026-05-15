@@ -2,7 +2,7 @@ import { Link } from '@inertiajs/react';
 
 import UserActions from './UserActions';
 
-export default function UserCard({ user }) {
+export default function UserCard({ user, showProfileLink = true }) {
     return (
         <article className="card user-card">
             <div className="user-card-header">
@@ -15,9 +15,13 @@ export default function UserCard({ user }) {
                 </div>
 
                 <div>
-                    <Link href={user.links.profile} className="card-link">
-                        {user.username}
-                    </Link>
+                    {showProfileLink ? (
+                        <Link href={user.links.profile} className="card-link">
+                            {user.username}
+                        </Link>
+                    ) : (
+                        <strong>{user.username}</strong>
+                    )}
                     <p className="muted">{user.professional_title || 'Perfil em construcao'}</p>
                 </div>
             </div>

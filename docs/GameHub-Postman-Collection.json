@@ -24,7 +24,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"lucasdev\",\n  \"email\": \"lucas@email.com\",\n  \"data_nascimento\": \"2003-05-10\",\n  \"password\": \"123456\",\n  \"password_confirmation\": \"123456\"\n}"
+          "raw": "{\n  \"username\": \"murilodev\",\n  \"email\": \"murilo@example.com\",\n  \"data_nascimento\": \"2003-05-10\",\n  \"password\": \"123456\",\n  \"password_confirmation\": \"123456\"\n}"
         },
         "url": {
           "raw": "{{base_url}}/register",
@@ -49,7 +49,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"email\": \"lucas@email.com\",\n  \"password\": \"123456\"\n}"
+          "raw": "{\n  \"email\": \"murilo@example.com\",\n  \"password\": \"123456\"\n}"
         },
         "url": {
           "raw": "{{base_url}}/login",
@@ -120,7 +120,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"username\": \"lucasdev\",\n  \"email\": \"lucas@email.com\",\n  \"data_nascimento\": \"2003-05-10\",\n  \"professional_title\": \"Game Programmer\"\n}"
+          "raw": "{\n  \"username\": \"murilodev\",\n  \"email\": \"murilo@example.com\",\n  \"data_nascimento\": \"2003-05-10\",\n  \"professional_title\": \"Game Programmer\"\n}"
         },
         "url": {
           "raw": "{{base_url}}/profile/update",
@@ -199,3 +199,4 @@
     }
   ]
 }
+

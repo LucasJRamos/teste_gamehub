@@ -4,9 +4,9 @@ Aplicacao web em Laravel 12 com frontend SPA em React + Inertia.js para perfis p
 
 ## Versao atual
 
-`1.3` - `6o periodo - Fase 02`
+`1.5` - `6o periodo - versao final para banca`
 
-Integracao completa entre frontend e backend, incluindo autenticacao, perfis, interacoes sociais e busca.
+Integracao entre frontend e backend documentada com rotas, payloads, services, testes e build.
 
 ## Stack
 
@@ -25,9 +25,16 @@ Integracao completa entre frontend e backend, incluindo autenticacao, perfis, in
 - Busca dinamica de usuarios
 - Seguir e deixar de seguir usuarios
 - Bloquear e desbloquear usuarios
+- Lista de usuarios bloqueados para permitir desbloqueio pelo frontend
 - Filtro de bloqueio aplicado em busca, sugestoes e perfil publico
+- Payloads JSON de dashboard, perfil e busca para evidencia tecnica
 - Respostas JSON padronizadas para consumo HTTP real
 - Controllers focados em orquestracao e regras de negocio movidas para `Services`
+
+## Documento final para banca
+
+- HTML fonte: `docs/DOCUMENTACAO-GAME-HUB-VERSAO-FINAL-BANCA.html`
+- PDF para envio: `../DOCUMENTO DE ESPECIFICACAO GAME HUB - VERSAO FINAL BANCA.pdf`
 
 ## Estrutura principal
 

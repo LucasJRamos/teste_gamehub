@@ -1,13 +1,17 @@
-# 1.3 6o periodo - Fase 02
+# 1.5 6o periodo - versao final para banca
 
-Integracao completa entre frontend e backend, incluindo autenticacao, perfis, interacoes sociais e busca.
+Documento de apoio da entrega final para banca. A versao final para envio esta em:
+
+- `docs/DOCUMENTACAO-GAME-HUB-VERSAO-FINAL-BANCA.html`
+- `../DOCUMENTO DE ESPECIFICACAO GAME HUB - VERSAO FINAL BANCA.pdf`
+
+A revisao considera os feedbacks da Fase 02 e consolida requisitos, arquitetura, integracao, evidencias de teste e build.
 
 ## Grupo
 
-- Lucas Jose Ramos Alves - 2412899
 - Murilo Cesar Ramos Melo - 2310194
 - Marcelo Alencar Quessada - 2321520
-- Mateus Pereira Teixeira - 2211825
+- Otavio - 2320135
 
 ## Escopo concluido
 
@@ -17,9 +21,11 @@ Integracao completa entre frontend e backend, incluindo autenticacao, perfis, in
 - Visualizacao e edicao de perfil com upload
 - Portfolio carregado e enviado ao backend real
 - Sistema de seguir e deixar de seguir
-- Sistema de bloquear e desbloquear
+- Sistema de bloquear e desbloquear, incluindo lista de usuarios bloqueados na tela de busca
 - Busca dinamica de usuarios
 - Exclusao de usuarios bloqueados da busca, sugestoes e perfis publicos
+- Respostas JSON de dashboard e perfis para evidencia tecnica da integracao
+- Matriz de requisitos da Fase 01 atualizada com status real da Fase 02
 - Padronizacao de respostas JSON com Resources
 - Separacao entre Controllers, Services, Requests e Components por dominio
 
@@ -31,9 +37,9 @@ Integracao completa entre frontend e backend, incluindo autenticacao, perfis, in
 - `POST /register`
 - `GET /dashboard`
 - `GET /profile`
+- `GET /users/{user}`
 - `PUT /profile`
 - `GET /users`
-- `GET /users/{user}`
 - `POST /users/{user}/follow`
 - `DELETE /users/{user}/follow`
 - `POST /users/{user}/block`
@@ -45,9 +51,10 @@ Integracao completa entre frontend e backend, incluindo autenticacao, perfis, in
 - `AuthService`, `ProfileService`, `SocialGraphService` e `UserDirectoryService` concentram regras de negocio
 - `UserResource`, `ProfileResource` e `PortfolioItemResource` padronizam a serializacao
 - `resources/js/Pages` e `resources/js/Components` foram separados por dominio
+- Banco local documentado como SQLite, conforme `.env` do projeto
 
-## Evidencias recomendadas
+## Evidencias executadas
 
-- Executar `php artisan test`
-- Executar `npm run build`
-- Registrar prints do login, dashboard, perfil, busca, follow e bloqueio
+- `php artisan test` passou com 9 testes e 71 assertions
+- `npm run build` passou com Vite e 600 modulos transformados
+- A documentacao revisada inclui payloads de login, dashboard, busca, bloqueio, perfil e erro de validacao

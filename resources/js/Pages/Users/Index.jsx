@@ -5,7 +5,7 @@ import TextInput from '../../Components/UI/TextInput';
 import UserCard from '../../Components/Users/UserCard';
 import AppLayout from '../../Layouts/AppLayout';
 
-export default function Index({ users, filters }) {
+export default function Index({ users, filters, blockedUsers = [] }) {
     const [search, setSearch] = useState(filters.search ?? '');
     const deferredSearch = useDeferredValue(search);
 
@@ -55,6 +55,23 @@ export default function Index({ users, filters }) {
                     <span>Total encontrado: {users.meta.total}</span>
                     <span>Pagina {users.meta.current_page} de {users.meta.last_page}</span>
                 </div>
+
+                {blockedUsers.length ? (
+                    <section className="stack-section">
+                        <div className="section-heading">
+                            <div>
+                                <h2>Usuarios bloqueados</h2>
+                                <p className="muted">Perfis ocultos da busca e disponiveis apenas para desbloqueio.</p>
+                            </div>
+                        </div>
+
+                        <div className="grid-columns">
+                            {blockedUsers.map((user) => (
+                                <UserCard key={user.id} user={user} showProfileLink={false} />
+                            ))}
+                        </div>
+                    </section>
+                ) : null}
             </section>
         </AppLayout>
     );

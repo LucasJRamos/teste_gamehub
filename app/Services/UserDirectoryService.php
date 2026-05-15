@@ -35,4 +35,12 @@ class UserDirectoryService
             ->limit($limit)
             ->get();
     }
+
+    public function blocked(User $viewer): Collection
+    {
+        return $viewer->blockedUsers()
+            ->withCount(['followers', 'following', 'portfolioItems'])
+            ->orderBy('username')
+            ->get();
+    }
 }

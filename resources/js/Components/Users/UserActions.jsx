@@ -40,6 +40,21 @@ export default function UserActions({ user, compact = false }) {
         return null;
     }
 
+    if (user.has_blocked) {
+        return (
+            <div className={`action-row ${compact ? 'compact' : ''}`}>
+                <button
+                    type="button"
+                    className="ghost-button"
+                    disabled={processing}
+                    onClick={unblock}
+                >
+                    Desbloquear
+                </button>
+            </div>
+        );
+    }
+
     return (
         <div className={`action-row ${compact ? 'compact' : ''}`}>
             <button
@@ -55,9 +70,9 @@ export default function UserActions({ user, compact = false }) {
                 type="button"
                 className="ghost-button"
                 disabled={processing}
-                onClick={user.has_blocked ? unblock : block}
+                onClick={block}
             >
-                {user.has_blocked ? 'Desbloquear' : 'Bloquear'}
+                Bloquear
             </button>
         </div>
     );

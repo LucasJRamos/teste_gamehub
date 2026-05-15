@@ -19,11 +19,13 @@ class UserDirectoryController extends Controller
     {
         $search = trim((string) $request->string('search'));
         $users = $this->userDirectoryService->search($request->user(), $search ?: null);
+        $blockedUsers = $this->userDirectoryService->blocked($request->user());
 
         if ($request->expectsJson()) {
             return response()->json([
                 'message' => 'Usuarios carregados com sucesso.',
                 'data' => UserResource::collection($users->getCollection()),
+                'blocked_users' => UserResource::collection($blockedUsers),
                 'pagination' => [
                     'current_page' => $users->currentPage(),
                     'last_page' => $users->lastPage(),
@@ -44,6 +46,7 @@ class UserDirectoryController extends Controller
                     'total' => $users->total(),
                 ],
             ],
+            'blockedUsers' => UserResource::collection($blockedUsers)->resolve($request),
         ]);
     }
 }
