@@ -2,92 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\RegisterRequest;
-use App\Http\Resources\UserResource;
-use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
-use Inertia\Inertia;
-use Inertia\Response;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function __construct(
-        protected AuthService $authService,
-    ) {
+    public function showLoginForm() {
+        return view('auth.login');
     }
 
-    public function showLoginForm(): Response
-    {
-        return Inertia::render('Auth/Login');
+    public function showRegisterForm() {
+        return view('auth.register');
     }
 
-    public function showRegisterForm(): Response
-    {
-        return Inertia::render('Auth/Register');
+    public function register(Request $request) {
+        $request->validate([
+            'username'        => 'required|string|max:100|unique:users,username',
+            'email'           => 'required|email|unique:users,email',
+            'data_nascimento' => 'required|date',
+            'password'        => 'required|confirmed|min:6',
+        ]);
+
+        User::create([
+            'username'        => $request->username,
+            'email'           => $request->email,
+            'data_nascimento' => $request->data_nascimento,
+            'password'        => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso!');
     }
 
-    public function register(RegisterRequest $request)
-    {
-        $user = $this->authService->register($request->validated());
+    public function login(Request $request) {
+        $credentials = $request->only('email', 'password');
 
-        Auth::login($user);
-        $request->session()->regenerate();
-
-        if ($request->expectsJson()) {
-            return response()->json([
-                'message' => 'Cadastro realizado com sucesso!',
-                'data' => UserResource::make($user->loadCount(['followers', 'following', 'portfolioItems'])),
-            ], 201);
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('dashboard');
         }
 
-        return to_route('dashboard')->with('success', 'Cadastro realizado com sucesso!');
+        return back()->withErrors(['email' => 'Credenciais inválidas.']);
     }
 
-    public function login(LoginRequest $request)
-    {
-        $credentials = $request->safe()->only(['email', 'password']);
-
-        if (! $this->authService->attempt($credentials)) {
-            if ($request->expectsJson()) {
-                return response()->json([
-                    'message' => 'Credenciais invalidas.',
-                    'errors' => ['email' => ['Credenciais invalidas.']],
-                ], 401);
-            }
-
-            throw ValidationException::withMessages([
-                'email' => 'Credenciais invalidas.',
-            ]);
-        }
-
-        $request->session()->regenerate();
-        $user = $request->user()->loadCount(['followers', 'following', 'portfolioItems']);
-
-        if ($request->expectsJson()) {
-            return response()->json([
-                'message' => 'Login realizado com sucesso!',
-                'data' => UserResource::make($user),
-            ]);
-        }
-
-        return to_route('dashboard')->with('success', 'Login realizado com sucesso!');
-    }
-
-    public function logout(Request $request)
-    {
+    public function logout() {
         Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
 
-        if ($request->expectsJson()) {
-            return response()->json([
-                'message' => 'Logout realizado com sucesso!',
-            ]);
-        }
-
-        return to_route('login')->with('success', 'Sessao encerrada com sucesso.');
+    public function dashboard() {
+        return view('dashboard');
     }
 }
+
+?>

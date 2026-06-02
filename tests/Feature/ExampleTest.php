@@ -2,12 +2,18 @@
 
 namespace Tests\Feature;
 
+// use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    public function test_root_redirects_to_authentication_flow(): void
+    /**
+     * A basic test example.
+     */
+    public function test_the_application_returns_a_successful_response(): void
     {
-        $this->get('/')->assertRedirect('/login');
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
     }
 }
