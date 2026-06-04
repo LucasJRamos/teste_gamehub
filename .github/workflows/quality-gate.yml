@@ -1,0 +1,34 @@
+name: Quality Gate
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, sqlite, pdo_sqlite, gd, fileinfo
+          coverage: pcov
+          ini-values: pcov.directory=app
+
+      - name: Preparar ambiente
+        run: |
+          cp .env.example .env
+          composer install --no-interaction --prefer-dist --no-progress
+          php artisan key:generate
+
+      - name: Executar linter
+        run: composer lint
+
+      - name: Executar testes com cobertura minima
+        run: composer test:coverage
