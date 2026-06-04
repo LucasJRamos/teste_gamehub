@@ -98,4 +98,9 @@ class AuthenticationTest extends TestCase
             ->assertOk()
             ->assertSee('DevMaster');
     }
+
+    public function test_quality_gate_blocks_broken_change(): void
+    {
+        $this->assertTrue(false, 'Falha proposital para demonstrar o bloqueio do Quality Gate.');
+    }
 }
