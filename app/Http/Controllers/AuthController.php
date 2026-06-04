@@ -2,40 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function showLoginForm() {
+    public function showLoginForm()
+    {
         return view('auth.login');
     }
 
-    public function showRegisterForm() {
+    public function showRegisterForm()
+    {
         return view('auth.register');
     }
 
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         $request->validate([
-            'username'        => 'required|string|max:100|unique:users,username',
-            'email'           => 'required|email|unique:users,email',
+            'username' => 'required|string|max:100|unique:users,username',
+            'email' => 'required|email|unique:users,email',
             'data_nascimento' => 'required|date',
-            'password'        => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:6',
         ]);
 
         User::create([
-            'username'        => $request->username,
-            'email'           => $request->email,
+            'username' => $request->username,
+            'email' => $request->email,
             'data_nascimento' => $request->data_nascimento,
-            'password'        => Hash::make($request->password),
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso!');
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
@@ -45,14 +49,15 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Credenciais inválidas.']);
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
+
         return redirect()->route('login');
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         return view('dashboard');
     }
 }
-
-?>
